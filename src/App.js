@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Recipe from "./Recipe";
 import "./App.css";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
     );
     const data = await response.json();
     setRecipes(data.hits);
+    console.log(data.hits);
   };
 
   return (
@@ -27,6 +29,14 @@ const App = () => {
           Search
         </button>
       </form>
+      {recipes.map((recipe) => (
+        <Recipe
+        key={recipe.recipe.label}
+          title={recipe.recipe.label}
+          calories={recipe.recipe.calories}
+          image={recipe.recipe.image}
+        />
+      ))}
     </div>
   );
 };
